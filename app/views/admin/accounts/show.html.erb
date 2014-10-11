@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lv:</strong>
+  <%= @account.lv %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @account.price %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @account.description %>
+</p>
+
+<%= @account.video %>
+<p>
+  <strong>Selled:</strong>
+  <%= @account.selled %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @account.user %>
+</p>
+
+<p>
+  <strong>Pass:</strong>
+  <%= @account.pass %>
+</p>
+
+<% @account_photos.each do |account_photo| %>
+  <%= account_photo.id %>
+  <%= image_tag account_photo.photo_url %>
+  <%= link_to 'del_img',[:admin, account_photo], method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<%= link_to 'Edit', [:edit, :admin, @account] %> |
+<%= link_to 'Back', admin_accounts_path %>

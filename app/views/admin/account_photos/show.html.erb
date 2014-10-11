@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @acc_photo.account_id %>
+</p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= @acc_photo.photo %>
+</p>
+
+<p>
+  <strong>Default:</strong>
+  <%= @acc_photo.default %>
+</p>
+
+<%= link_to 'Edit', edit_acc_photo_path(@acc_photo) %> |
+<%= link_to 'Back', acc_photos_path %>

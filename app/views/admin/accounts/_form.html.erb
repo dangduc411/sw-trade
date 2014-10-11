@@ -1,0 +1,51 @@
+<%= form_for([:admin,@account]) do |f| %>
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @account.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :lv %><br>
+    <%= f.number_field :lv %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :video %><br>
+    <%= f.text_field :video %>
+  </div>
+  <div class="field">
+    <%= f.label :selled %><br>
+    <%= f.check_box :selled %>
+  </div>
+  <div class="field">
+    <%= f.label :user %><br>
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :pass %><br>
+    <%= f.text_field :pass %>
+  </div>
+  <%= f.fields_for :acc_photos do |p| %>
+     <div class="field">
+       <%= p.label :photo %><br>
+       <%= p.file_field :photo, :multiple => true, name: "acc_photos[photo][]" %>
+     </div>
+   <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

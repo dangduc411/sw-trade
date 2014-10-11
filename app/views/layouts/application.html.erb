@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SwTrade</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+
+  <div class="masthead">
+    <ul class="nav nav-justified">
+      <li class="active"><%= link_to 'Home', root_path %></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Downloads</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+  <div style="margin-top: 2em; margin-bottom: 1em">
+    <%= form_tag search_path, :method => 'get', role: "form", class: "form-inline" do%>
+      <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search", style: "width:75em"%>
+      <%= submit_tag "search", :name => :nil, class: "btn btn-default"%>
+    <% end %>
+  </div>
+
+
+  <!-- Example row of columns -->
+  <!--<div class="row">
+    <div class="col-lg-4">
+    </div>
+  </div>-->
+  <%= yield %>
+
+  <!-- Site footer -->
+  <div class="footer">
+    <p>© Company 2014</p>
+  </div>
+
+</div>
+
+
+</body>
+</html>
