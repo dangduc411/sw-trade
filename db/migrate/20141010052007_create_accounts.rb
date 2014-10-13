@@ -4,7 +4,6 @@ class CreateAccounts < ActiveRecord::Migration
       t.integer :lv
       t.decimal :price, precision: 8, scale: 2 
       t.text :description
-      t.string :video
       t.boolean :selled, default: false
       t.string :user
       t.string :pass

@@ -1,8 +1,7 @@
-<%= form_for([:admin,@account]) do |f| %>
+<%= nested_form_for([:admin,@account]) do |f| %>
   <% if @account.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
-
       <ul>
       <% @account.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -24,10 +23,6 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :video %><br>
-    <%= f.text_field :video %>
-  </div>
-  <div class="field">
     <%= f.label :selled %><br>
     <%= f.check_box :selled %>
   </div>
@@ -39,12 +34,22 @@
     <%= f.label :pass %><br>
     <%= f.text_field :pass %>
   </div>
+  <div>
+  <%= f.label :video %>
+  <%= f.fields_for :videos do |v| %>
+    <%= v.text_field :video %>
+    <%= v.link_to_remove 'remove' %>
+  <% end %>
+  <p><%= f.link_to_add "add", :videos %></p>
+  </div>
+
   <%= f.fields_for :acc_photos do |p| %>
-     <div class="field">
-       <%= p.label :photo %><br>
-       <%= p.file_field :photo, :multiple => true, name: "acc_photos[photo][]" %>
-     </div>
-   <% end %>
+    <div class="field">
+     <%= p.label :photo %><br>
+     <%= p.file_field :photo, :multiple => true, name: "acc_photos[photo][]" %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -10,13 +10,14 @@ class Admin::AccountsController < Admin::BaseController
   # GET /accounts/1
   # GET /accounts/1.json
   def show
-    @account_photos = @account.account_photos.all
+    @account_photos = @account.photos.all
   end
 
   # GET /accounts/new
   def new
     @account = Account.new
-    @acc_photo = @account.account_photos.build
+    @acc_photo = @account.photos.build
+    @video = @account.videos.build
   end
 
   # GET /accounts/1/edit
@@ -32,9 +33,9 @@ class Admin::AccountsController < Admin::BaseController
       if @account.save
         set_default = 0
         params[:acc_photos]['photo'].each do |a|
-          @acc_photo = @account.account_photos.create!(:photo => a, :account_id => @account.id)
+          @acc_photo = @account.photos.create!(:photo => a, :account_id => @account.id)
           @acc_photo.save
-          end
+        end
         format.html { redirect_to [:admin, :accounts], notice: 'Account was successfully created.' }
         format.json { render :show, status: :created, location: @account }
       else
@@ -51,8 +52,7 @@ class Admin::AccountsController < Admin::BaseController
       if @account.update(account_params)
         if params[:acc_photos]
           params[:acc_photos]['photo'].each do |a|
-            #@account.account_photos.build
-            @acc_photo = @account.account_photos.create!(:photo => a, :account_id => @account.id)
+            @acc_photo = @account.photos.create!(:photo => a, :account_id => @account.id)
           end
         end 
         format.html { redirect_to [:admin, :accounts], notice: 'Account was successfully updated.' }
@@ -87,6 +87,6 @@ class Admin::AccountsController < Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:lv, :price, :description, :video, :selled, :user, :pass, account_photos_attributes:[:id, :account_id, :photo])
+      params.require(:account).permit(:lv, :price, :description, :video, :selled, :user, :pass, photos_attributes:[:id, :account_id, :photo], videos_attributes:[:id, :video, :account_id])
     end
 end

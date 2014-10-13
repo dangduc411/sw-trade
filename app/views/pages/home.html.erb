@@ -2,7 +2,7 @@
 	<% @accounts.each do |a| %>
 	  <div class="col-md-3">
 	    <div class="thumbnail">
-				<% img = a.account_photos.first %>
+				<% img = a.photos.first %>
 				<%= link_to detail_path(id: a)  do %> 
 					<%= image_tag img.photo_url,style: "height: 100%; width: 100%; display: block "%>
 				<% end %>

@@ -39,3 +39,4 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 gem 'carrierwave'
 gem "bower-rails", "~> 0.8.3"
+gem 'nested_form'

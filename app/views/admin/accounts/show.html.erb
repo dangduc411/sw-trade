@@ -15,7 +15,9 @@
   <%= @account.description %>
 </p>
 
-<%= @account.video %>
+<%= @account.videos.all each do |v| %>
+  <%= v.video %>
+<% end %>
 <p>
   <strong>Selled:</strong>
   <%= @account.selled %>
