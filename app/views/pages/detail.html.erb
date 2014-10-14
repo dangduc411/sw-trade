@@ -38,7 +38,8 @@
 	    <div id="myTabContent" class="tab-content" style="margin: 10px" >
 	      <div class="tab-pane fade in active" id="detail">
 	      	<h1><%= @account.lv%></h1>
-	      	<%= @account.description %>
+	      	<p><%= @account.description %></p>
+	      	<p>Tag: <%= raw @account.tag_list.map {|t| link_to t, tag_path(t)}.join(',') %></p>
 					<!--<p><%#= @account.attributes.each{|key,value| "#{key}:#{value}"} %></p>-->
 	      </div>
 	      <div class="tab-pane fade" id="video">

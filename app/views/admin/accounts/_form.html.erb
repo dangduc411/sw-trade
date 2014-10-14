@@ -34,6 +34,12 @@
     <%= f.label :pass %><br>
     <%= f.text_field :pass %>
   </div>
+
+  <div class="field">
+    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+    <%= f.text_field :tag_list %>
+  </div>
+
   <div>
   <%= f.label :video %>
   <%= f.fields_for :videos do |v| %>

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'pages/search' => 'pages#search', as: :search
   get 'pages/:id/detail' => 'pages#detail', as: :detail
   get 'pages/:id/confirm' => 'pages#confirm', as: :confirm
+  get 'tags/:tag' => 'pages#home', as: :tag
+  get 'admin/tags/:tag' => 'admin/accounts#index', as: :admin_tag
   namespace :admin do
     root 'accounts#index'
     resources :account_photos

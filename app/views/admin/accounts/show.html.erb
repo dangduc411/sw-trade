@@ -14,10 +14,12 @@
   <strong>Description:</strong>
   <%= @account.description %>
 </p>
-
-<%= @account.videos.all each do |v| %>
-  <%= v.video %>
-<% end %>
+<p>
+  <% @account.videos.all.each do |v| %>
+    <strong>Video:</strong>
+    <%= v.video %>
+  <% end %>
+</p>
 <p>
   <strong>Selled:</strong>
   <%= @account.selled %>

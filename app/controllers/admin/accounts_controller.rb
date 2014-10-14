@@ -4,7 +4,11 @@ class Admin::AccountsController < Admin::BaseController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = Account.all
+    if params[:tag]
+      @accounts = Account.tagged_with(params[:tag])
+    else
+      @accounts = Account.all
+    end
   end
 
   # GET /accounts/1
@@ -87,6 +91,6 @@ class Admin::AccountsController < Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:lv, :price, :description, :video, :selled, :user, :pass, photos_attributes:[:id, :account_id, :photo], videos_attributes:[:id, :video, :account_id])
+      params.require(:account).permit(:lv, :price, :description, :video, :selled, :user, :pass, :name, :tag_list ,photos_attributes:[:id, :account_id, :photo], videos_attributes:[:id, :video, :account_id])
     end
 end

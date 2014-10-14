@@ -1,6 +1,10 @@
 class PagesController < ApplicationController
 	def home
-		@accounts = Account.all
+		if params[:tag]
+			@accounts = Account.tagged_with(params[:tag])
+		else
+			@accounts = Account.all
+		end
 	end
 
 	def detail
