@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <div class="container">
 
   <div class="masthead">
@@ -20,8 +21,9 @@
     </ul>
   </div>
   <div style="margin-top: 2em; margin-bottom: 1em">
-    <%= form_tag search_path, :method => 'get', role: "form", class: "form-inline" do%>
-      <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search", style: "width:75em"%>
+    <%= form_tag search_path, :method => 'post', role: "form", class: "form-inline" do %>
+      <%= text_field_tag :search, params[:search], class: "form-control ", id: "search", autocomplete: "off",placeholder: "Search Monster Here", style: "width:76.2em", autocomplete: 'off', :data => {:provide => "typeahead"} %>
+      <!--<input type="text" data-provide="typeahead" id="search" autocomplete="off">-->
       <%= submit_tag "search", :name => :nil, class: "btn btn-default"%>
     <% end %>
   </div>
@@ -38,9 +40,17 @@
   <div class="footer">
     <p>© Company 2014</p>
   </div>
-
 </div>
-
-
+<script type="text/javascript">
+$(document).ready(function(){
+  <% b=[] %>
+  <% Tags.all.each do |t| b.push(t.name) end %>
+  var tags = [];
+  tags = <%= raw b %>
+  console.log(tags);
+  var colors = ["red", "blue", "green", "yellow", "brown", "black"];
+  $('#search').typeahead({source: tags});
+});
+</script>
 </body>
 </html>

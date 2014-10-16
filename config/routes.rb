@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#home'
-  get 'pages/search' => 'pages#search', as: :search
+  post 'pages/search' => 'pages#search', as: :search
   get 'pages/:id/detail' => 'pages#detail', as: :detail
   get 'pages/:id/confirm' => 'pages#confirm', as: :confirm
   get 'tags/:tag' => 'pages#home', as: :tag

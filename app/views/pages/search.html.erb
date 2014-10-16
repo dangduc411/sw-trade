@@ -1,0 +1,19 @@
+<div class="row">
+	<% @accs.each do |a| %>
+		<div class="col-md-3">
+			<div class="thumbnail">
+				<% acc = Account.find(a) %>
+				<% img = acc.photos.first %>
+				<%= link_to detail_path(acc) do %>
+					<%= image_tag img.photo_url,style: "height: 100%; width: 100%; display: block " %>
+				<% end %>
+			
+				<div class="caption">
+					<h3>Level <%= acc.lv %></h3>
+					<p><%= acc.description %></p>
+					<p style="text-align:center"><%= link_to 'Buy Now', confirm_path(id: a), class: "btn btn-block btn-primary", role: "button"%></p>
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>

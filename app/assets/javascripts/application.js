@@ -15,4 +15,5 @@
 //= require jquery_nested_form
 //= require turbolinks
 //= require bootstrap/dist/js/bootstrap
+//= require bootstrap3-typeahead
 //= require_tree .
