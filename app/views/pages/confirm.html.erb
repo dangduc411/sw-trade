@@ -16,7 +16,10 @@
 		  </label>
 		</div>
 		<p style="text-align:center">
-		  <button type="button" class="btn btn-default btn-lg">Large button</button>
+		  <%= link_to express_checkout_path(account_id: params[:id]), method: :post do %>
+		  	<%= image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif") %>
+		  <% end %>
+
 		</p>
 	</div>
 </div>

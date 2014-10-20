@@ -7,6 +7,8 @@ class CreateAccounts < ActiveRecord::Migration
       t.boolean :selled, default: false
       t.string :user
       t.string :pass
+      t.string :payer_id
+      t.string :payer_ip
 
       t.timestamps
     end

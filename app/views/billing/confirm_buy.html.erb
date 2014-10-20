@@ -1,0 +1,6 @@
+<%= form_tag buy_path, :method => 'post'  do %>
+	<%= hidden_field_tag :account_id, params[:account_id] %>
+	<%= hidden_field_tag :token, params[:token] %>
+	<%= hidden_field_tag :PayerID, params[:PayerID] %>
+	<%= submit_tag("ok") %>
+<% end %>

@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+
 	def home
 		if params[:tag]
 			@accounts = Account.tagged_with(params[:tag])
@@ -14,6 +15,7 @@ class PagesController < ApplicationController
 	def confirm
 		
 	end
+	
 	def search
 		tagging = Tags.find_by! name: params[:search]
 		@accs = Taggings.where(tag_id: tagging)

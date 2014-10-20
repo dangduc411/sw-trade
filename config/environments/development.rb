@@ -34,4 +34,15 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+      login: "sw_trade-merchant_api1.gmail.com",
+      password: "CB9R4NTRKDQ2W3HW",
+      signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31AE7YgAZ0oEogdPjL9KaaUd0.sijR"
+    }
+    ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end

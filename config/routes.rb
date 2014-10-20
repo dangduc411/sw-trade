@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   get 'pages/:id/confirm' => 'pages#confirm', as: :confirm
   get 'tags/:tag' => 'pages#home', as: :tag
   get 'admin/tags/:tag' => 'admin/accounts#index', as: :admin_tag
+  post 'express_checkout/:account_id', to: 'billing#express_checkout', as: :express_checkout
+  get 'confirm_buy/:account_id', to: 'billing#confirm_buy', as: :confirm_buy
+  post 'buy', to: 'billing#buy', as: :buy
+
   namespace :admin do
     root 'accounts#index'
     resources :account_photos
