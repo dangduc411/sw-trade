@@ -13,18 +13,16 @@ class BillingController < ApplicationController
 	  redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
 	end
 
-
-
 	def confirm_buy
-		
 	end
 
 	def buy
-
 		account = Account.find(params[:account_id])
-		response = EXPRESS_GATEWAY.purchase(account.price * 10, token: params[:token], payer_id: params[:PayerID])
+		response = EXPRESS_GATEWAY.purchase(account.price * 100, token: params[:token], payer_id: params[:PayerID])
+		account.selled = true
+		account.payer_id = params[:PayerID]
+		account.save
 		redirect_to root_path
-		puts request.ip
 	end
 =begin
 	def thuc_hien_mua

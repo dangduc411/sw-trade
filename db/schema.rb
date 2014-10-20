@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20141013104146) do
     t.boolean  "selled",                              default: false
     t.string   "user"
     t.string   "pass"
+    t.string   "payer_id"
+    t.string   "payer_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

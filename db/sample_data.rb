@@ -1,7 +1,7 @@
 5.times do |num|
 	Account.create!(
 		lv: num,
-		price: 10,
+		price: 100,
 		description: "none",
 		user: "qwe",
 		pass: "qwe",
@@ -17,7 +17,7 @@ end
 5.times do |num|
 	Account.create!(
 		lv: num,
-		price: 10,
+		price: 100,
 		description: "none",
 		user: "qwe",
 		pass: "qwe",
