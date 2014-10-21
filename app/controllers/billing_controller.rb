@@ -14,6 +14,7 @@ class BillingController < ApplicationController
 	end
 
 	def confirm_buy
+		@account = Account.find(params[:account_id])
 	end
 
 	def buy
