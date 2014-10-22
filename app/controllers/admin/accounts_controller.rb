@@ -1,5 +1,6 @@
 class Admin::AccountsController < Admin::BaseController
   before_action :set_account, only: [:show, :edit, :update, :destroy]
+  before_filter :require_login
 
   # GET /accounts
   # GET /accounts.json

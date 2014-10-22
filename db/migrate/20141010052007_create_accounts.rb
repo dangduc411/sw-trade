@@ -8,7 +8,8 @@ class CreateAccounts < ActiveRecord::Migration
       t.string :user
       t.string :pass
       t.string :payer_id
-      t.string :payer_ip
+      t.string :payer_ip  
+      t.string :payer_email
 
       t.timestamps
     end

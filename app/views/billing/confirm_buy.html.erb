@@ -29,7 +29,10 @@
 			<%= hidden_field_tag :token, params[:token] %>
 			<%= hidden_field_tag :PayerID, params[:PayerID] %>
 			<p style='text-align:center'>
-				<%= submit_tag "Chechout Now", class: "btn btn-success btn-lg" %>
+				<div class='well'>
+					<%= submit_tag "Checkout Now", class: "btn btn-success btn-lg btn-block" %>
+					<%= link_to 'Cancel', root_path , class: "btn btn-default btn-lg btn-block", role: "button"%>
+				</div>
 			</p>
 		<% end %>
 	</div>

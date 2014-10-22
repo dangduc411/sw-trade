@@ -42,3 +42,4 @@ gem "bower-rails", "~> 0.8.3"
 gem 'nested_form'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'activemerchant'
+gem 'sorcery'

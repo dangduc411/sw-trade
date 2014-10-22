@@ -30,6 +30,9 @@
       <!--<input type="text" data-provide="typeahead" id="search" autocomplete="off">-->
       <%= submit_tag "search", :name => :nil, class: "btn btn-default"%>
     <% end %>
+    <% flash.each do |type, message| %>
+      <%= message %>
+    <% end %>
   </div>
 
 
@@ -45,16 +48,6 @@
     <p>© Company 2014</p>
   </div>
 </div>
-<script type="text/javascript">
-$(document).ready(function(){
-  <% b=[] %>
-  <% Tags.all.each do |t| b.push(t.name) end %>
-  var tags = [];
-  tags = <%= raw b %>
-  console.log(tags);
-  var colors = ["red", "blue", "green", "yellow", "brown", "black"];
-  $('#search').typeahead({source: tags});
-});
-</script>
+
 </body>
 </html>

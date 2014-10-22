@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   root 'pages#home'
   post 'pages/search' => 'pages#search', as: :search
   get 'pages/:id/detail' => 'pages#detail', as: :detail
@@ -13,6 +14,12 @@ Rails.application.routes.draw do
     root 'accounts#index'
     resources :account_photos
     resources :accounts
+
+    resources :user_sessions
+    resources :users
+
+    get 'login' => 'user_sessions#new', :as => :login
+    post 'logout' => 'user_sessions#destroy', :as => :logout
   end 
 
   # The priority is based upon order of creation: first created -> highest priority.

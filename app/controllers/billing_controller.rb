@@ -18,12 +18,23 @@ class BillingController < ApplicationController
 	end
 
 	def buy
-		account = Account.find(params[:account_id])
-		response = EXPRESS_GATEWAY.purchase(account.price * 100, token: params[:token], payer_id: params[:PayerID])
-		account.selled = true
-		account.payer_id = params[:PayerID]
-		account.save
-		redirect_to root_path
+		@account = Account.find(params[:account_id])
+		detail = EXPRESS_GATEWAY.details_for(params[:token])
+		response = EXPRESS_GATEWAY.purchase(@account.price * 100, token: params[:token], payer_id: params[:PayerID])
+		#puts "==================="
+		#puts detail.email
+		#puts "==================="
+		if response.success?
+			@account.selled = true
+			@account.payer_id = params[:PayerID]
+			@account.payer_ip = request.ip
+			@account.payer_email = detail.email
+			@account.save
+			BuyerMailer.sent_account(@account).deliver
+			redirect_to root_path, notice: "Transaction Success"
+		else
+			redirect_to root_path, notice: "Cannot Transaction, Contact To Admin"
+		end
 	end
 =begin
 	def thuc_hien_mua
@@ -44,4 +55,5 @@ class BillingController < ApplicationController
 		end
 	end
 =end
+#token=EC-9SA33689VS6411804&PayerID=K685G2ZGNQTTW
 end

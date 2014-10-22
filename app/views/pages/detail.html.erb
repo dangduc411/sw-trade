@@ -37,16 +37,42 @@
 
 	    <div id="myTabContent" class="tab-content" style="margin: 10px" >
 	      <div class="tab-pane fade in active" id="detail">
-	      	<h1><%= @account.lv%></h1>
+	      	<h1>Level:<%= @account.lv%></h1>
 	      	<p><%= @account.description %></p>
 	      	<p>Tag: <%= raw @account.tag_list.map {|t| link_to t, tag_path(t)}.join(',') %></p>
 					<!--<p><%#= @account.attributes.each{|key,value| "#{key}:#{value}"} %></p>-->
 	      </div>
+
 	      <div class="tab-pane fade" id="video">
 	      	<div class="bs-example">
-				    <div class="embed-responsive embed-responsive-16by9">
+				    <!--<div class="embed-responsive embed-responsive-16by9">
 				    	<iframe width="560" height="315" src="//www.youtube.com/embed/<%= @account.videos.first %>" frameborder="0" allowfullscreen></iframe>
-				    </div>
+				    </div>-->
+
+				    <div id="carousel-video-generic" class="carousel slide" data-ride="carousel">
+							<ol class="carousel-indicators">
+								<% index = 0 %>
+								<% @account.videos.all.count.times do |num| %>
+								<li data-target="#carousel-video-generic" data-slide-to="<%= num %>" class="<%= index == 0 ? 'active' : ''%>"></li>
+								<% index += 1 %>
+								<% end %>
+							</ol>
+							<div class="carousel-inner">
+								<% @account.videos.all.each_with_index do |a, index| %>
+								<div class="item <%= index == 0 ? 'active' : '' %>">
+									<div class="embed-responsive embed-responsive-16by9">
+							    	<iframe width="560" height="315" src="//www.youtube.com/embed/<%= a.video %>" frameborder="0" allowfullscreen></iframe>
+							    </div>
+								</div>
+								<% end %>
+							</div>
+							<a class="left carousel-control" href="#carousel-video-generic" role="button" data-slide="prev">
+								<span class="glyphicon glyphicon-chevron-left"></span>
+							</a>
+							<a class="right carousel-control" href="#carousel-video-generic" role="button" data-slide="next">
+								<span class="glyphicon glyphicon-chevron-right"></span>
+							</a>
+						</div>
 				  </div>
 	      </div>
 			</div>
@@ -54,3 +80,14 @@
 	</div>
 
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+  <% b=[] %>
+  <% Tags.all.each do |t| b.push(t.name) end %>
+  var tags = [];
+  tags = <%= raw b %>
+  console.log(tags);
+  var colors = ["red", "blue", "green", "yellow", "brown", "black"];
+  $('#search').typeahead({source: tags});
+});
+</script>

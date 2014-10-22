@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 		if params[:tag]
 			@accounts = Account.tagged_with(params[:tag])
 		else
-			@accounts = Account.all
+			@accounts = Account.sellable.all
 		end
 	end
 
