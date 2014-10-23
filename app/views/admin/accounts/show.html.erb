@@ -1,45 +1,69 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <p id="notice"><%= notice %></p>
+  <div class="col-md-6">
+    <p>
+      <strong>Lv:</strong>
+      <%= @account.lv %>
+    </p>
 
-<p>
-  <strong>Lv:</strong>
-  <%= @account.lv %>
-</p>
+    <p>
+      <strong>Price:</strong>
+      <%= @account.price %>
+    </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @account.price %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @account.description %>
+    </p>
+  </div>
+  <div class="col-md-6">
+    <p>
+      <strong>Selled:</strong>
+      <%= @account.selled %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @account.description %>
-</p>
-<p>
-  <% @account.videos.all.each do |v| %>
-    <strong>Video:</strong>
-    <%= v.video %>
+    <p>
+      <strong>User:</strong>
+      <%= @account.user %>
+    </p>
+
+    <p>
+      <strong>Pass:</strong>
+      <%= @account.pass %>
+    </p>
+  </div>
+  
+  <div class="col-md-9">
+    <p>
+      <% @account.videos.all.each do |v| %>
+        <strong>Video:</strong>
+        <%= v.video %>
+      <% end %>
+    </p>
+  </div>
+
+  <div class="col-md-3">
+    <%= link_to 'Edit', [:edit, :admin, @account], class:"btn btn-primary", role:"button"%> 
+    <%= link_to 'Back', admin_accounts_path, class:"btn btn-primary", role:"button"%>
+  </div>
+  
+  <div class="col-md-12"></div>
+
+  <% @account_photos.each do |account_photo| %>
+    <div class="col-md-3">
+      <div class="thumbnail">
+        <%= image_tag account_photo.photo_url , class: "img-rounded", style:"width: 200px; height: 200px;" %>
+        <div class="caption">
+          <p><%= link_to 'delete image',[:admin, account_photo], method: :delete, class:"btn btn-primary", role:"button", data: { confirm: 'Are you sure?' }%></p>
+        </div>
+      </div>
+    </div>
   <% end %>
-</p>
-<p>
-  <strong>Selled:</strong>
-  <%= @account.selled %>
-</p>
 
-<p>
-  <strong>User:</strong>
-  <%= @account.user %>
-</p>
-
-<p>
-  <strong>Pass:</strong>
-  <%= @account.pass %>
-</p>
-
-<% @account_photos.each do |account_photo| %>
-  <%= account_photo.id %>
-  <%= image_tag account_photo.photo_url %>
-  <%= link_to 'del_img',[:admin, account_photo], method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
-
-<%= link_to 'Edit', [:edit, :admin, @account] %> |
-<%= link_to 'Back', admin_accounts_path %>
+  <script type="text/javascript">
+  $( document ).ready(function() {
+    $(".menu").removeClass("active");
+    $("#Account").addClass("active");
+  });
+  </script>
+</div>

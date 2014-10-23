@@ -13,7 +13,9 @@ class PagesController < ApplicationController
 	end
 
 	def confirm
-		
+	end
+
+	def contact
 	end
 	
 	def search

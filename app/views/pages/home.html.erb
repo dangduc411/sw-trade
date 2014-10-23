@@ -15,3 +15,12 @@
 	  </div>
 	<% end %>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+  <% b=[] %>
+  <% Tags.all.each do |t| b.push(t.name) end %>
+  var tags = [];
+  tags = <%= raw b %>
+  $('#search').typeahead({source: tags});
+});
+</script>

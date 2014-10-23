@@ -1,16 +1,15 @@
-<h1>Listing accounts</h1>
-
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Lv</th>
       <th>Price</th>
       <th>Description</th>
       <th>Selled</th>
-      <th>User</th>
-      <th>Pass</th>
+      <th>Payer_id</th>
+      <th>Payer_ip</th>
+      <th>Payer_email</th>
       <th>Tag</th>
-      <th colspan="3"></th>
+      <th colspan="3" style="text-align:center">Action</th>
     </tr>
   </thead>
 
@@ -21,8 +20,9 @@
         <td><%= account.price %></td>
         <td><%= account.description %></td>
         <td><%= account.selled %></td>
-        <td><%= account.user %></td>
-        <td><%= account.pass %></td>
+        <td><%= account.payer_id %></td>
+        <td><%= account.payer_ip %></td>
+        <td><%= account.payer_email %></td>
         <td>Tags: <%= raw account.tag_list.map {|t| link_to t, admin_tag_path(t)}.join(',')%></td>
         <td><%= link_to 'Show', [:admin, account] %></td>
         <td><%= link_to 'Edit', [:edit, :admin, account] %></td>
@@ -35,3 +35,9 @@
 <br>
 
 <%= link_to 'New Account', new_admin_account_path %>
+<script type="text/javascript">
+$( document ).ready(function() {
+  $(".menu").removeClass("active");
+  $("#Account").addClass("active");
+});
+</script>

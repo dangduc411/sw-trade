@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post 'pages/search' => 'pages#search', as: :search
   get 'pages/:id/detail' => 'pages#detail', as: :detail
   get 'pages/:id/confirm' => 'pages#confirm', as: :confirm
+  get 'pages/contact' => 'pages#contact', as: :contact
   get 'tags/:tag' => 'pages#home', as: :tag
   get 'admin/tags/:tag' => 'admin/accounts#index', as: :admin_tag
   post 'express_checkout/:account_id', to: 'billing#express_checkout', as: :express_checkout

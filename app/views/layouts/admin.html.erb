@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SwTrade</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<style type="text/css">
+.typeahead{
+  width: 76.2em
+}
+</style>
+<div class="container">
+
+  <div class="masthead">
+    <ul class="nav nav-justified">
+      <li class="menu" id="Account"><%= link_to 'Account', admin_root_path %></li>
+      <li class="menu" id="User"><%= link_to 'User', admin_users_path %></li>
+      <li class="menu"><a href="#">Blank</a></li>
+      <li class="menu"><a href="#">Blank</a></li>
+      <li class="menu"><a href="#">Blank</a></li>
+      <li class="menu"><%= link_to 'Home', root_path %></li>
+    </ul>
+  </div>
+  
+  
+  <% flash.each do |type, message| %>
+    <div class="alert alert-warning" role="alert">
+      <%= message %>
+    </div>
+  <% end %>
+
+  <div>
+    <% if current_user %>
+      <%= link_to 'log out',admin_logout_path, method: :post %>
+    <% end %>
+  </div>
+
+  <%= yield %>
+
+  <!-- Site footer -->
+  <div class="footer">
+    <p>© Company 2014</p>
+  </div>
+</div>
+
+</body>
+</html>

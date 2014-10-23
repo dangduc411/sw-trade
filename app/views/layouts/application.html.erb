@@ -16,25 +16,27 @@
 
   <div class="masthead">
     <ul class="nav nav-justified">
-      <li class="active"><%= link_to 'Home', root_path %></li>
-      <li><a href="#">Projects</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Downloads</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
+      <li class="menu active" id="Home"><%= link_to 'Home', root_path %></li>
+      <li class="menu"><a href="#">Projects</a></li>
+      <li class="menu"><a href="#">Services</a></li>
+      <li class="menu"><a href="#">Downloads</a></li>
+      <li class="menu"><a href="#">About</a></li>
+      <li class="menu" id="Contact"><%= link_to 'Contact', contact_path %></li>
     </ul>
   </div>
   <div style="margin-top: 2em; margin-bottom: 1em">
     <%= form_tag search_path, :method => 'post', role: "form", class: "form-inline" do %>
-      <%= text_field_tag :search, params[:search], class: "form-control ", id: "search", autocomplete: "off",placeholder: "Search Monster Here", style: "width:76.2em", autocomplete: 'off', :data => {:provide => "typeahead"} %>
+      <%= text_field_tag :search, params[:search], class: "form-control ", id: "search", autocomplete: "off",placeholder: "Search Monster Here", style: "width:75.9em", autocomplete: 'off', :data => {:provide => "typeahead"} %>
       <!--<input type="text" data-provide="typeahead" id="search" autocomplete="off">-->
       <%= submit_tag "search", :name => :nil, class: "btn btn-default"%>
     <% end %>
-    <% flash.each do |type, message| %>
-      <%= message %>
-    <% end %>
   </div>
 
+  <% flash.each do |type, message| %>
+    <div class="alert alert-warning" role="alert">
+      <%= message %>
+    </div>
+  <% end %>
 
   <!-- Example row of columns -->
   <!--<div class="row">
